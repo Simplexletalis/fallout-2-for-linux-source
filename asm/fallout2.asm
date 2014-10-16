@@ -1,0 +1,11 @@
+section .text
+%include 'fallout2_code.asm'
+%include 'fallout2_compat.asm'
+section .rodata
+%include 'fallout2_BEGTEXT.asm'
+section .data
+%include 'fallout2_DGROUP.asm'
+section .bss
+%include 'fallout2__bss.asm'
+section .text
+%include 'fallout2__idata.asm'
