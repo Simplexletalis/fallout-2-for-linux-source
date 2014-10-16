@@ -1,7 +1,7 @@
-fallout-for-linux-source
+fallout-2-for-linux-source
 ========================
 
-fallout for linux source
+fallout 2 for linux source
 
 
 This project was created by Timeslip: http://www.nma-fallout.com/member.php?53359-Timeslip
