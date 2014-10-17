@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "sdl/SDL.h"
 #include "Events.h"
+#include <cstdlib>
+#include <cstring>
+using namespace std;
 
 extern "C" {
 	void WantToQuit();
@@ -17,9 +20,9 @@ void SdlInit() {
 	} else {
 		mainSurface=SDL_SetVideoMode(640, 480, 8, SDL_SWSURFACE);
 	}
-	SDL_ShowCursor(SDL_DISABLE);
-	SDL_WM_GrabInput(SDL_GRAB_ON);
-	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+	//SDL_ShowCursor(SDL_DISABLE);
+	//SDL_WM_GrabInput(SDL_GRAB_ON);
+	//SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 }
 
 void SdlExit() {
@@ -76,6 +79,7 @@ void RunMessageQueue() {
 				break;
 			case SDL_QUIT:
 				WantToQuit();
+				std::exit(0);
 				break;
 
 			case SDL_VIDEOEXPOSE:
@@ -163,7 +167,7 @@ int setPaletteEntries(uint8* entries, int pos, int count) {
 
 void bltToScreen(int target[4], SDL_Surface* surf, int source[4]) {
 	//SDL_Rect srect = { source[0], source[1], source[2]-source[0], source[3]-source[1] };
-	SDL_Rect trect = { target[0], target[1], target[2]-target[0], target[3]-target[1] };
+	SDL_Rect trect = { static_cast<Sint16>(target[0]), static_cast<Sint16>(target[1]), static_cast<Uint16>(target[2]-target[0]), static_cast<Uint16>(target[3]-target[1]) };
 
 	//blitting here results in a black screen after the first frame... Probably doing something wrong
 	//SDL_BlitSurface(surf, &srect, mainSurface, &trect);
