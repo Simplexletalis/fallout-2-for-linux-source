@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "sdl/SDL.h"
 #include "sounds.h"
+#include <cstring>
 
 #define UNUSEDFUNCTION { crash; return 0; }
 
@@ -305,7 +306,7 @@ static void mixerCallback(void *userdata, Uint8 *_stream, int len) {
 
 int CCONV1(stdcall) FakeDSoundCreate(uint32, FakeDirectSound** iface,uint32) {
 	SDL_AudioSpec spec;
-	memset(&spec, 0, sizeof(spec));
+	std::memset(&spec, 0, sizeof(spec));
 	spec.callback=mixerCallback;
 	spec.channels=2;
 	spec.freq=22050;
