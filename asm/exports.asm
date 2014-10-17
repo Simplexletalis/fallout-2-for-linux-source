@@ -72,21 +72,21 @@ align 4
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ; XXX floating point functions XXX
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-extern _ff_d1, _ff_d2, _h_pow@0, _h_atan2@0
+extern ff_d1, ff_d2, h_pow, h_atan2
 __4deb3a:
   pushad;
-  fstp qword [_ff_d1];
-  fstp qword [_ff_d2];
-  call _h_pow@0;
+  fstp qword [ff_d1];
+  fstp qword [ff_d2];
+  call h_pow;
   popad;
   retn;
 align 4
 
 __4decb5:
   pushad;
-  fstp qword [_ff_d1];
-  fstp qword [_ff_d2];
-  call _h_atan2@0;
+  fstp qword [ff_d1];
+  fstp qword [ff_d2];
+  call h_atan2;
   popad;
   retn;
 align 4
@@ -95,68 +95,68 @@ align 4
 ; XXX memory functions XXX
 ; XXXXXXXXXXXXXXXXXXXXXXXX
 
-extern _malloc, _realloc, _free, _memset, _memmove
+extern malloc, realloc, free, memset, memmove
 __4c5ad0:
 __4c5ad8:
-__4ef1c5: func1 _malloc
+__4ef1c5: func1 malloc
 __4c5b50:
 __4c5b58:
-__4f1669: func2 _realloc
+__4f1669: func2 realloc
 __4c5c24:
 __4c5c2c:
-__4ef2b4: func1 _free
-__4effe1: func3 _memmove
-__4f0080: func3 _memset
+__4ef2b4: func1 free
+__4effe1: func3 memmove
+__4f0080: func3 memset
 
 ; XXXXXXXXXXXXXXXXXXXXXX
 ; XXX File functions XXX
 ; XXXXXXXXXXXXXXXXXXXXXX
-extern _fclose, _fflush, _fopen, _h_fprintf, _fgetc, _fgets, _fputc, _fputs, _ungetc, _fread, _fwrite, _fgetpos, _fseek, _fsetpos, _ftell
-extern _rewind, _filelength, _rename, _remove, _access, _fdopen
-__4eb810: func1 _fclose
-__4e03e6: func1 _fflush
-__4ead56: func2 _fopen
-__4ebd4d: func3 _h_fprintf
-__4f11d5: func1 _fgetc
-__4f0cdb: func3 _fgets
-__4f134e: func2 _fputc
-__4e1037: func2 _fputs
-__4e61e2: func2 _ungetc
-__4f018e: func4 _fread
-__4f0fa9: func4 _fwrite
-__4e627d: func2 _fgetpos
-__4f0428: func3 _fseek
-__4e6290: func2 _fsetpos
-__4e3afe: func1 _ftell
-__4f1411: func1 _rewind
-__4f038d: func1 _filelength
-__4f0521: func2 _rename
-__4f1daf: func1 _remove
-__4f0f16: func2 _access
-__4e39fc: func2 _fdopen
+extern fclose, fflush, fopen, h_fprintf, fgetc, fgets, fputc, fputs, ungetc, fread, fwrite, fgetpos, fseek, fsetpos, ftell
+extern rewind, file_length, rename, remove, access, fdopen
+__4eb810: func1 fclose
+__4e03e6: func1 fflush
+_fopen:   func2 fopen
+__4ebd4d: func3 h_fprintf
+__4f11d5: func1 fgetc
+__4f0cdb: func3 fgets
+__4f134e: func2 fputc
+__4e1037: func2 fputs
+__4e61e2: func2 ungetc
+__4f018e: func4 fread
+__4f0fa9: func4 fwrite
+__4e627d: func2 fgetpos
+__4f0428: func3 fseek
+__4e6290: func2 fsetpos
+__4e3afe: func1 ftell
+__4f1411: func1 rewind
+__4f038d: func1 file_length
+__4f0521: func2 rename
+__4f1daf: func1 remove
+__4f0f16: func2 access
+__4e39fc: func2 fdopen
 
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ; XXX random number functions XXX
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-extern _rand, _srand
-__4f1740: func0 _rand
-__4f1764: func1 _srand
+extern rand, srand
+__4f1740: func0 rand
+__4f1764: func1 srand
 ;extern __4f1736 ;initrandnext
 
 ; XXXXXXXXXXXXXXXXXXXXXXXX
 ; XXX Signal functions XXX
 ; XXXXXXXXXXXXXXXXXXXXXXXX
 
-extern _h_fatal_runtime_error, _h_GNWSystemError, _h_get_errno_ptr, _h_longjmp, _h_assert
+extern h_fatal_runtime_error, h_GNWSystemError, h_get_errno_ptr, h_longjmp, h_assert
 __4e3f10: xor eax, eax
           retn
 		  align 4
-__4ec2f5: func2 _h_fatal_runtime_error
-__4d8200: func1 _h_GNWSystemError
-__4f11aa: func0 _h_get_errno_ptr
+__4ec2f5: func2 h_fatal_runtime_error
+_errorOut:func1 h_GNWSystemError
+__4f11aa: func0 h_get_errno_ptr
 
-extern _setjmp_ptr
+extern setjmp_ptr
 __4f150e:
 		cmp dword [eax], 0x1bcd1234
 		je .jump
@@ -164,7 +164,7 @@ __4f150e:
 		pushad
 		mov edi, eax
 		push 64
-		call _malloc
+		call malloc
 		add esp, 4
 		mov [edi+4], eax
 		popad
@@ -176,7 +176,7 @@ __4f150e:
 		mov dword [eax+20], edi
 		mov edi, eax
 		push dword [eax+4]
-		call dword [_setjmp_ptr]
+		call dword [setjmp_ptr]
 		add esp, 4
 		push dword [edi+8]
 		mov ecx, [edi+12]
@@ -184,56 +184,56 @@ __4f150e:
 		mov edi, [edi+20]
 		retn
 		align 4
-__4f154d: func2 _h_longjmp
-__4e02ef: func4 _h_assert
+__4f154d: func2 h_longjmp
+__4e02ef: func4 h_assert
 
 ; XXXXXXXXXXXXXXXXXXXXXX
 ; XXX Time functions XXX
 ; XXXXXXXXXXXXXXXXXXXXX
-extern _localtime, _time, _clock
-__4f1652: func1 _localtime
-__4f15d2: func1 _time
-__4f21a3: func0 _clock
+extern localtime, time, clock
+__4f1652: func1 localtime
+__4f15d2: func1 time
+__4f21a3: func0 clock
 ;extern __4f2198 ;clock_init
 
 ; XXXXXXXXXXXXXXXXXXXXXX
 ; XXX Misc functions XXX
 ; XXXXXXXXXXXXXXXXXXXXXX
-extern _h_atexit, _exit
-__4e0349: func1 _h_atexit
-__4e660f: func1 _exit
+extern h_atexit, exit
+__4e0349: func1 h_atexit
+__4e660f: func1 exit
 
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXX
 ; XXX directory functions XXX
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-extern _opendir, _readdir, _closedir, _chdir, _mkdir, _getcwd, __splitpath
-__4ebfa9: func1 _opendir
-__4ebfb6: func1 _readdir
-__4ec029: func1 _closedir
-__4e635a: func1 _chdir
-__4f118f: func1 _mkdir
-__4e62e1: func2 _getcwd
-__4f0a25: func5 __splitpath
+extern opendir, readdir, closedir, chdir, mkdir, getcwd, splitpath
+__4ebfa9: func1 opendir
+__4ebfb6: func1 readdir
+__4ec029: func1 closedir
+__4e635a: func1 chdir
+__4f118f: func1 mkdir
+__4e62e1: func2 getcwd
+__4f0a25: func5 splitpath
 ;extern __4e65dd ;rmdir
 
 ; XXXXXXXXXXXXXXXXXXXXXXXX
 ; XXX string functions XXX
 ; XXXXXXXXXXXXXXXXXXXXXXXX
 
-extern _strncat, _strstr, _strdup, _strtok, _stricmp, _atoi, _strpbrk, _strncpy, _strrchr, _strtod, _vsprintf
-extern _sscanf, _vsprintf, _vprintf
-__4f0f6a: func3 _strncat
-__4f1450: func2 _strstr
-__4c5a80: func1 _strdup
-__4e629c: func1 _strdup
-__4f0dc6: func2 _strtok
-__4dece6: func2 _stricmp
-__4f0098: func1 _atoi
-__4f0105: func2 _strpbrk
-__4f014f: func3 _strncpy
-__4f0174: func2 _strrchr
-__4da4cd: func2 _strtod
+extern strncat, strstr, strdup, strtok, strcmp, atoi, strpbrk, strncpy, strrchr, strtod, vsprintf
+extern sscanf, vsprintf, vprintf
+__4f0f6a: func3 strncat
+__4f1450: func2 strstr
+__4c5a80: func1 strdup
+__4e629c: func1 strdup
+__4f0dc6: func2 strtok
+__4dece6: func2 strcmp
+__4f0098: func1 atoi
+__4f0105: func2 strpbrk
+__4f014f: func3 strncpy
+__4f0174: func2 strrchr
+__4da4cd: func2 strtod
 ;visual studio doesn't have a vsscanf, so we need to improvise a little. (But not as much as setjmp, thankfully...)
 section .bss
 sscanf_ret: resb 4
@@ -245,12 +245,12 @@ __4f0ef5:
 		mov [sscanf_ret], eax;
 		mov [sscanf_ecx], ecx;
 		mov [sscanf_edx], edx;
-		call _sscanf;
+		call sscanf;
 		mov ecx, [sscanf_ecx];
 		mov edx, [sscanf_edx];
 		jmp dword [sscanf_ret];
 		align 4
-__4f143b: func3 _vsprintf
+__4f143b: func3 vsprintf
 __4f0041:
 		push edx
 		push ecx
@@ -260,7 +260,7 @@ __4f0041:
 		push eax
 		push edx
 		push ecx
-		call _vsprintf
+		call vsprintf
 		add esp, 12
 		pop ecx
 		pop edx
@@ -273,7 +273,7 @@ __4f0f48:
 		mov edx, [esp+12]
 		push eax
 		push edx
-		call _vprintf
+		call vprintf
 		add esp, 8
 		pop ecx
 		pop edx
