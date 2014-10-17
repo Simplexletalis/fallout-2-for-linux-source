@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "sdl/SDL.h"
+#include <cstring>
+using namespace std;
 
 struct PixelFormat_t { 
     uint32 dwSize; 

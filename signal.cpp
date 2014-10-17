@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <signal.h>
-#include <setjmp.h>
+#include <csetjmp>
 #include "interop_macros.h"
+using namespace std;
 
 struct fo_jmp_buf {
 	uint32 magic;
@@ -19,7 +20,8 @@ extern "C" {
 	void CCONV1(cdecl) h_fatal_runtime_error(const char* a, int b) CCONV2(cdecl);
 	void CCONV1(cdecl) h_GNWSystemError(const char* msg) CCONV2(cdecl);
 	int* CCONV1(cdecl) h_get_errno_ptr() CCONV2(cdecl);
-	void CCONV1(cdecl) h_longjmp(struct fo_jmp_buf* buf, int value) CCONV2(cdecl);
+	//void CCONV1(cdecl) h_longjmp(struct fo_jmp_buf* buf, int value) CCONV2(cdecl);
+	void CCONV1(cdecl) h_longjmp(jmp_buf* buf, int value) CCONV2(cdecl);
 	void CCONV1(cdecl) h_assert(int test, const char* msg, const char* file, int line) CCONV2(cdecl);
 
 	void* setjmp_ptr=(void*)&setjmp;
@@ -32,16 +34,16 @@ void CCONV1(cdecl) h_fatal_runtime_error(const char* a, int b) {
 
 void CCONV1(cdecl) h_GNWSystemError(const char* msg) {
 	printf("%s", msg);
-	abort();
+	//abort();
 }
 
-int* CCONV1(cdecl) h_get_errno_ptr() { _get_errno(&errorno); return &errorno; }
+int* CCONV1(cdecl) h_get_errno_ptr() { /*_get_errno(&errorno);*/ return &errorno; }
 
-void CCONV1(cdecl) h_longjmp(struct fo_jmp_buf* buf, int value) {
-	if(buf->magic!=0x1bcd1234) {
-		h_fatal_runtime_error("Trying to longjmp with an uninited buffer", 0);
-	}
-	longjmp(buf->real_buf, value);
+void CCONV1(cdecl) h_longjmp(jmp_buf* buf, int value) {
+	//if(buf->magic!=0x1bcd1234) {
+	//	h_fatal_runtime_error("Trying to longjmp with an uninited buffer", 0);
+	//}
+	longjmp(*buf, value);
 }
 
 void CCONV1(cdecl) h_assert(int test, const char* msg, const char* file, int line) {
