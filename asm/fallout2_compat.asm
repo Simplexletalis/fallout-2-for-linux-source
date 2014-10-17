@@ -4,26 +4,26 @@
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ;The program entry point
-global _entryPoint
-extern _FakeDSoundCreate@12
+global entryPoint
+extern FakeDSoundCreate
 ;extern _FakeDInputCreate@16
 ;extern _FakeDDrawCreate@12
-_entryPoint:
-  mov dword [__51e444], 1 ;We have focus
-  mov dword [__51e430], _FakeDSoundCreate@12 ;supply the pointer to create a fake directsound interface
+entryPoint:
+  mov dword [_focus], 1 ;We have focus
+  mov dword [__51e430], FakeDSoundCreate ;supply the pointer to create a fake directsound interface
   ;mov dword [__51e42c], _FakeDInputCreate@16 ;supply the pointer to create the tmp direct input interface
   ;mov dword [__51e428], _FakeDDrawCreate@12
   mov dword [__51ede0], 1 ;So that movie tests to check that the ddraw device isn't null don't bomb out
   mov eax, [esp+12]
-  mov [__51e434], eax ;The window pointer
+  mov [_window], eax ;The window pointer
   mov eax, [esp+4]
   mov edx, [esp+8]
-  jmp __48099c;
+  jmp _gnw_main;
 align 4
 
 ;Called to perform a clean quit
-global _WantToQuit
-_WantToQuit:
+global WantToQuit
+WantToQuit:
   mov dword [__5186cc], 1
   retn
 align 4
@@ -33,7 +33,7 @@ align 4
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 ;debug_printf
-extern _DebugPrintf
+extern DebugPrintf
 __4c6f48:
   lea eax, [esp+8]
   push edx
@@ -41,7 +41,7 @@ __4c6f48:
   push eax
   mov eax, [esp+16]
   push eax
-  call _DebugPrintf
+  call DebugPrintf
   add esp, 8
   pop ecx
   pop edx
@@ -68,12 +68,12 @@ __4e05d4:
 align 4
 
 ;int __fastcall dxinput_get_mouse_state(INTERNALMOUSESTATE *mouseState)
-extern _MouseState
+extern MouseState
 __4e053c:
   push edx
   push ecx
   push eax
-  call _MouseState
+  call MouseState
   add esp, 4
   pop ecx
   pop edx
@@ -81,11 +81,11 @@ __4e053c:
 align 4
 
 ;int __fastcall dxinput_flush_keyboard_buffer()
-extern _EmptyKeyQueue
+extern EmptyKeyQueue
 __4e05fc:
   push edx
   push ecx
-  call _EmptyKeyQueue
+  call EmptyKeyQueue
   mov eax, 1
   pop ecx
   pop edx
@@ -93,7 +93,7 @@ __4e05fc:
 align 4
 
 ;int __fastcall dxinput_read_keyboard_buffer(int *key)
-extern _GetNextKey
+extern GetNextKey
 __4e0650: push ebx
           push ecx
           push edx
@@ -114,7 +114,7 @@ __4e0650: push ebx
           push dword __6b2560
           mov dword [esp + 12], esi
           push byte 16
-          call _GetNextKey
+          call GetNextKey
 		  add esp, 16
           test eax, eax
           jz __4e06b7
@@ -174,8 +174,8 @@ align 4
 
 ;int __fastcall GNW95_init_mode_ex(int gWidth, int gHeight, int gDepth)
 ;Creates the window, sets the screen res and creates the primary surface. We do all that at startup now, so don't bother
-extern _showRect
-extern _clearScreen
+extern showRect
+extern clearScreen
 __4cae1c:
   xor eax, eax
   mov dword [__6ac9f0 + 0], eax
@@ -183,29 +183,29 @@ __4cae1c:
   mov dword [__6ac9f0 + 8], dword 639
   mov dword [__6ac9f0 + 12], dword 479
   mov dword [__6ac7d8], eax
-  mov dword [__6aca18], _showRect
+  mov dword [__6aca18], showRect
   mov dword [__6aca1c], ClearScreenWrapper
-  mov dword [__6ac7dc], _showRect
+  mov dword [__6ac7dc], showRect
   retn
 align 4
 
 ClearScreenWrapper:
   push edx
   push ecx
-  call _clearScreen
+  call clearScreen
   pop ecx
   pop edx
   retn
 align 4
 
 ;int __fastcall GNW95_SetPaletteEntries(void *entries, int min, int max)
-extern _setPaletteEntries
+extern setPaletteEntries
 __4cb310:
   push ecx
   push ebx
   push edx
   push eax
-  call _setPaletteEntries
+  call setPaletteEntries
   add esp, 12
   pop ecx
   retn
@@ -217,7 +217,7 @@ __4cb568:
   push dword 256
   push dword 0
   push eax
-  call _setPaletteEntries
+  call setPaletteEntries
   add esp, 12
   pop ecx
   pop edx
@@ -237,8 +237,8 @@ align 4
 ;That weird thing that does the virtualprotect
 __4f4dd0:
 ;The polymorphic function at 4F7349, and the associated switch table
-global __6b4033, __6b4037, __6b401b, __6b4017, __6b401f, __6b4023
-extern __4f7359
+global _6b4033, _6b4037, _6b401b, _6b4017, _6b401f, _6b4023
+extern _4f7359
 __4f7438:
 __4f7440:
 __4f7444:
@@ -264,8 +264,8 @@ __4fa178:
   retn
 align 4
 
-extern _FreeSurface
-extern _CreateSurface
+extern FreeSurface
+extern CreateSurface
 
 ;CreateMovieSurfaces [NONE]
 global __4f5cb0
@@ -277,7 +277,7 @@ __4f5cb0: sub esp, byte 108
           jz __4f5cd4
           mov eax, dword [__51ee00]
           push eax
-          call _FreeSurface
+          call FreeSurface
 		  add esp, 4
           mov dword [__51ee00], dword 0x0
 global __4f5cd4
@@ -285,7 +285,7 @@ __4f5cd4: cmp dword [__51ee04], byte 0
           jz __4f5cf2
           mov eax, dword [__51ee04]
           push eax
-          call _FreeSurface
+          call FreeSurface
 		  add esp, 4
           mov dword [__51ee04], dword 0x0
 global __4f5cf2
@@ -334,7 +334,7 @@ __4f5dbf: lea eax, [esp + 12]
           push dword __51ee00
           mov ecx, dword [__51ede0]
           push eax
-          call _CreateSurface
+          call CreateSurface
 		  add esp, 8
           test eax, eax
           jz __4f5de4
@@ -349,7 +349,7 @@ __4f5de4: lea eax, [esp + 12]
           push dword __51ee04
           mov ecx, dword [__51ede0]
           push eax
-          call _CreateSurface
+          call CreateSurface
 		  add esp, 8
           test eax, eax
           jz __4f5e09
@@ -386,15 +386,15 @@ __4f5e31: mov ecx, dword [__6b3cfc]
 align 4
 
 ;LockMovieSurface
-extern _LockSurfaces
+extern LockSurfaces
 __4f5e60:
   push edx
   push ecx
-  push __6b4037
-  push __6b4033
+  push _6b4037
+  push _6b4033
   push dword [__51ee04]
   push dword [__51ee00]
-  call _LockSurfaces
+  call LockSurfaces
   add esp, 16
   pop ecx
   pop edx
@@ -402,13 +402,13 @@ __4f5e60:
 align 4
 
 ;UnlockMovieSurfaces
-extern _UnlockSurfaces
+extern UnlockSurfaces
 __4f5ef0:
   push edx
   push ecx
   push dword [__51ee04]
   push dword [__51ee00]
-  call _UnlockSurfaces
+  call UnlockSurfaces
   add esp, 8
   pop ecx
   pop edx
@@ -420,9 +420,9 @@ __4f6390:
   push edx
   push ecx
   push dword [__51ee04]
-  call _FreeSurface
+  call FreeSurface
   push dword [__51ee00]
-  call _FreeSurface
+  call FreeSurface
   add esp, 8
   mov dword [__51ee00], 0
   mov dword [__51ee04], 0
@@ -432,7 +432,7 @@ __4f6390:
 align 4
 
 ;_movie_MVE_ShowFrame [NONE]
-extern _bltToScreen
+extern bltToScreen
 global __486654
 __486654: push ebx
           push esi
@@ -556,7 +556,7 @@ __4868c0: lea edx, [esp + 116 - 8]
           push esi
           lea edx, [esp + 0x8c - 8]
           push edx
-          call _bltToScreen
+          call bltToScreen
 		  xor eax, eax
 		  add esp, 12
 global __4868f3
@@ -569,7 +569,7 @@ __4868f3: add esp, dword 0x94
 align 4
 
 ;_cleanupMovie [NONE]
-extern _LockSingleSurface, _UnlockSingleSurface
+extern LockSingleSurface, UnlockSingleSurface
 global __486e98
 __486e98: push ebx
           push ecx
@@ -616,7 +616,7 @@ __486f26: mov ebx, dword [__638e9c]
           push byte 0
           mov eax, ebx
           push eax
-          call _LockSingleSurface
+          call LockSingleSurface
 		  add esp, 20
           mov eax, dword [__638e50]
           imul eax, dword [__638e4c]
@@ -646,7 +646,7 @@ __486f26: mov ebx, dword [__638e9c]
           push ecx
           mov edx, dword [eax]
           push eax
-          call _UnlockSingleSurface
+          call UnlockSingleSurface
 		  add esp, 8
 global __486fca
 __486fca: xor edi, edi
@@ -754,13 +754,13 @@ align 4
 ; XXXXXXXXXXXXXXXXXXXXXX
 
 ;int (const char* title)
-extern _SetWindowTitle
+extern SetWindowTitle
 __4d80d8:
   push edx
   push ecx
   push eax
   mov [__51e3dc], eax
-  call _SetWindowTitle
+  call SetWindowTitle
   add esp, 4
   pop ecx
   pop edx
@@ -768,7 +768,7 @@ __4d80d8:
 align 4
 
 ;_GNW95_process_message [NONE]
-extern _RunMessageQueue
+extern RunMessageQueue
 global __4c9cf0
 __4c9cf0: push ebx
           push ecx
@@ -776,7 +776,7 @@ __4c9cf0: push ebx
           push esi
           push edi
           sub esp, byte 32
-          cmp dword [__51e444], byte 0
+          cmp dword [_focus], byte 0
           jz __4c9da7
           call __4cbe18
           test eax, eax
@@ -790,7 +790,7 @@ __4c9d12: lea eax, [esp + 28]
           call __4c9e14
           jmp __4c9d12
 global __4c9d2b
-__4c9d2b: call dword [__6c0200]
+__4c9d2b: call dword [_6c0200]
           mov ecx, eax
           xor ebx, ebx
           xor edx, edx
@@ -833,7 +833,7 @@ __4c9d9b: inc ebx
           cmp ebx, dword 0x100
           jl __4c9d38
 global __4c9da7
-__4c9da7: call _RunMessageQueue
+__4c9da7: call RunMessageQueue
           add esp, byte 32
           pop edi
           pop esi

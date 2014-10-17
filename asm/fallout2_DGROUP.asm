@@ -43,9 +43,9 @@ __5001dc: db 'cache_init failed in art_init', 0xa, '', 0, ''
 __5001fc: db 'language', 0, ''
  align 4
 __500208: db 'english', 0, ''
-__500210: db 'art\', 0, ''
+__500210: db 'art/', 0, ''
  align 4
-__500218: db '%s%s%s\%s.lst', 0, ''
+__500218: db '%s%s%s/%s.lst', 0, ''
  align 4
 __500228: db 'art_read_lst failed in art_init', 0xa, '', 0, ''
  align 4
@@ -72,16 +72,16 @@ __500330: db 'Unable to open %s in art_init', 0xa, '', 0, ''
  align 4
 __500350: db ' ,;', 0x9, '', 0xa, '', 0, ''
  align 4
-__500358: db '%s%s%s\%s%c%c.frm', 0, ''
+__500358: db '%s%s%s/%s%c%c.frm', 0, ''
  align 4
-__50036c: db '%s%s%s\%s%c%c.fr%c', 0, ''
+__50036c: db '%s%s%s/%s%c%c.fr%c', 0, ''
  align 4
-__500380: db '%s%s%s\%s%c%c%d.frm', 0, ''
-__500394: db '%s%s%s\%s', 0, ''
+__500380: db '%s%s%s/%s%c%c%d.frm', 0, ''
+__500394: db '%s%s%s/%s', 0, ''
  align 4
 __5003a0: db ' ,;', 0xd, '', 0x9, '', 0xa, '', 0, ''
  align 4
-__5003a8: db 'art\%s\%s', 0, ''
+__5003a8: db 'art/%s/%s', 0, ''
  align 4
 __5003b4: db 'rb', 0, ''
  align 4
@@ -90,12 +90,12 @@ __5003b8: db 'wb', 0, ''
 __5003bc: dd 0x00776172
 __5003c0: db 'AudioOpen: Couldn', 0x27, 't open %s for read', 0xa, '', 0, ''
  align 4
-__5003e8: db '..\int\audio.c', 0, ''
+__5003e8: db '../int/audio.c', 0, ''
  align 4
 __5003f8: db 'AudioWrite shouldn', 0x27, 't be ever called', 0xa, '', 0, ''
  align 4
 __500420: dd 0x00776172
-__500424: db '..\int\audiof.c', 0, ''
+__500424: db '../int/audiof.c', 0, ''
 __500434: db 'AudiofWrite shouldn', 0x27, 't be ever called', 0xa, '', 0, ''
  align 4
 __50045c: db 'master_patches', 0, ''
@@ -106,7 +106,7 @@ __500474: db 'AUTOMAP.DB', 0, ''
  align 4
 __500480: db 'MAPS', 0, ''
  align 4
-__500488: db '%s\%s\%s', 0, ''
+__500488: db '%s/%s/%s', 0, ''
  align 4
 __500494: db 'iisxxxx1', 0, ''
  align 4
@@ -115,7 +115,7 @@ __5004a0: db '', 0xa, 'AUTOMAP: Error allocating data buffer!', 0xa, '', 0, ''
 __5004cc: db '', 0xa, 'AUTOMAP: Saving AutoMap DB index %d, level %d', 0xa, '', 0, ''
 __5004fc: db '', 0xa, 'AUTOMAP: Error allocating data buffers!', 0xa, '', 0, ''
  align 4
-__500528: db '%s\%s', 0, ''
+__500528: db '%s/%s', 0, ''
  align 4
 __500530: db 'r+b', 0, ''
 __500534: db '', 0xa, 'AUTOMAP: Error opening automap database file!', 0xa, '', 0, ''
@@ -295,7 +295,7 @@ __500d98: db ' ', 0, '', 0, '', 0, ''
 __500d9c: db ',', 0, '', 0, '', 0, ''
 __500da0: db 'Unrecognized flag: %s', 0xa, '', 0, ''
  align 4
-__500db8: db 'data\ai.txt', 0, ''
+__500db8: db 'data/ai.txt', 0, ''
 __500dc4: db 'packet_num', 0, ''
  align 4
 __500dd0: db 'max_dist', 0, ''
@@ -476,11 +476,11 @@ __501534: db 'system', 0, ''
 __50153c: db 'cycle_speed_factor', 0, ''
  align 4
 __501550: db 'pcx', 0, ''
-__501554: db '..\int\DATAFILE.C', 0, ''
+__501554: db '../int/DATAFILE.C', 0, ''
  align 4
 __501568: db 'rb', 0, ''
  align 4
-__50156c: db '..\int\DIALOG.C', 0, ''
+__50156c: db '../int/DIALOG.C', 0, ''
 __50157c: db 'reply has only one option, waiting for dialog to end', 0xa, '', 0, ''
  align 4
 __5015b4: db 'Ended', 0xa, '', 0, ''
@@ -626,9 +626,9 @@ __5019c8: db 114
           db 116
           db 0
           db 0
-__5019cc: db 'data\karmavar.txt', 0, ''
+__5019cc: db 'data/karmavar.txt', 0, ''
  align 4
-__5019e0: db 'data\genrep.txt', 0, ''
+__5019e0: db 'data/genrep.txt', 0, ''
 __5019f0: db 'ELV1_1', 0, ''
  align 4
 __5019f8: db 'ERROR', 0, ''
@@ -656,33 +656,33 @@ __501a78: db 'language', 0, ''
  align 4
 __501a84: db 'system', 0, ''
  align 4
-__501a8c: db 'text\%s\cuts\', 0, ''
+__501a8c: db 'text/%s/cuts/', 0, ''
  align 4
 __501a9c: db '%s%s', 0, ''
  align 4
 __501aa4: db '%s%s.txt', 0, ''
 __501aad: dd 0x0, 0x408f4000 ; 1000
  align 4
-__501ab8: db 'art\intrface', 0, ''
+__501ab8: db 'art/intrface', 0, ''
  align 4
-__501ac8: db '%s\%s.pal', 0, ''
+__501ac8: db '%s/%s.pal', 0, ''
  align 4
 __501ad4: db 'rt', 0, ''
  align 4
 __501ad8: db '10labone', 0, ''
  align 4
-__501ae4: db 'data\endgame.txt', 0, ''
+__501ae4: db 'data/endgame.txt', 0, ''
  align 4
-__501af8: db 'narrator\nar_5', 0, ''
+__501af8: db 'narrator/nar_5', 0, ''
  align 4
-__501b08: db 'data\enddeath.txt', 0, ''
+__501b08: db 'data/enddeath.txt', 0, ''
  align 4
 __501b1c: db '', 0xa, 'Error: endgameSetupDeathEnding: No endgame death info!', 0, ''
-__501b54: db 'narrator\', 0, ''
+__501b54: db 'narrator/', 0, ''
  align 4
 __501b60: db '', 0xa, 'endgameSetupDeathEnding: Death Filename Picked: %s', 0, ''
 __501b94: db '', 0xa, 'Error: endgameSetupDeathEnding: No endgame death info!', 0, ''
-__501bcc: db 'narrator\nar_4', 0, ''
+__501bcc: db 'narrator/nar_4', 0, ''
  align 4
 __501bdc: db '', 0xa, 'endgameSetupDeathEnding: Death Filename: %s', 0, ''
  align 4
@@ -690,10 +690,10 @@ __501c0c: db 'times_run', 0, ''
  align 4
 __501c18: db 'system', 0, ''
  align 4
-__501c20: db '\ereg', 0, ''
+__501c20: db '/ereg', 0, ''
  align 4
-__501c28: db 'ereg\reg32a.exe', 0, ''
-__501c38: db '..\int\EXPORT.C', 0, ''
+__501c28: db 'ereg/reg32a.exe', 0, ''
+__501c38: db '../int/EXPORT.C', 0, ''
 __501c48: db 'Unkn(%u)', 0, ''
  align 4
 __501c54: db '%d', 0, ''
@@ -714,7 +714,7 @@ __501c8c: db 'font%d.aaf', 0, ''
  align 4
 __501c98: db 'rb', 0, ''
  align 4
-__501c9c: db 'game\', 0, ''
+__501c9c: db 'game/', 0, ''
  align 4
 __501ca4: db 'language', 0, ''
  align 4
@@ -828,7 +828,7 @@ __50217c: db 'ERROR: attempt to reference global var out of range: %d', 0, ''
 __5021b4: db 'ERROR: attempt to reference global var out of range: %d', 0, ''
 __5021ec: db 'GAME_GLOBAL_VARS:', 0, ''
  align 4
-__502200: db 'data\vault13.gam', 0, ''
+__502200: db 'data/vault13.gam', 0, ''
  align 4
 __502214: db 'rt', 0, ''
  align 4
@@ -836,7 +836,7 @@ __502218: db '%d', 0, ''
  align 4
 __50221c: db '%f', 0, ''
  align 4
-__502220: db 'art\intrface\helpscrn.pal', 0, ''
+__502220: db 'art/intrface/helpscrn.pal', 0, ''
  align 4
 __50223c: db 'color.pal', 0, ''
  align 4
@@ -856,8 +856,8 @@ __5023c8: db 'patch%03d.dat', 0, ''
 __5023d8: db 'splash', 0, ''
  align 4
 __5023e0: db 'english', 0, ''
-__5023e8: db 'art\splash\', 0, ''
-__5023f4: db 'art\%s\splash\', 0, ''
+__5023e8: db 'art/splash/', 0, ''
+__5023f4: db 'art/%s/splash/', 0, ''
  align 4
 __502404: db '%ssplash%d.rix', 0, ''
  align 4
@@ -950,7 +950,7 @@ __502684: db 'speech_volume', 0, ''
  align 4
 __502694: db 'cache_size', 0, ''
  align 4
-__5026a0: db 'sound\music\', 0, ''
+__5026a0: db 'sound/music/', 0, ''
  align 4
 __5026b0: db 'music_path1', 0, ''
 __5026bc: db 'music_path2', 0, ''
@@ -994,7 +994,7 @@ __502808: db 'sort_script_list', 0, ''
  align 4
 __50281c: db 'fallout2.cfg', 0, ''
  align 4
-__50282c: db '%s\%s', 0, ''
+__50282c: db '%s/%s', 0, ''
  align 4
 __502834: db '', 0xa, '', 0, '', 0, '', 0, ''
 __502838: db '', 0xa, '', 0xa, '', 0xa, '', 0xa, '', 0xa, '   ', 0, ''
@@ -1117,7 +1117,7 @@ __503190: db '%d', 0, ''
  align 4
 __503194: db '', 0xa, 'Error: gdialog: Can', 0x27, 't find message!', 0, ''
  align 4
-__5031bc: db 'game\custom.msg', 0, ''
+__5031bc: db 'game/custom.msg', 0, ''
 __5031cc: db '', 0xa, 'burst: %d', 0, ''
  align 4
 __5031d8: db '', 0xa, 'Error: gdialog: Can', 0x27, 't find message!', 0, ''
@@ -1178,13 +1178,13 @@ __5033b4: db 'artimer3.mve', 0, ''
 __5033c4: db 'artimer4.mve', 0, ''
  align 4
 __5033d4: db 'credits.mve', 0, ''
-__5033e0: db 'art\cuts\introsub.pal', 0, ''
+__5033e0: db 'art/cuts/introsub.pal', 0, ''
  align 4
-__5033f8: db 'art\cuts\eldersub.pal', 0, ''
+__5033f8: db 'art/cuts/eldersub.pal', 0, ''
  align 4
-__503410: db 'art\cuts\artmrsub.pal', 0, ''
+__503410: db 'art/cuts/artmrsub.pal', 0, ''
  align 4
-__503428: db 'art\cuts\crdtssub.pal', 0, ''
+__503428: db 'art/cuts/crdtssub.pal', 0, ''
  align 4
 __503440: db '', 0xa, 'Playing movie: %s', 0xa, '', 0, ''
 __503454: db 'language', 0, ''
@@ -1194,20 +1194,20 @@ __503460: db 'system', 0, ''
 __503468: db '', 0xa, 'gmovie_play() - Error: Unable to determine language!', 0xa, '', 0, ''
  align 4
 __5034a0: db 'english', 0, ''
-__5034a8: db 'art\%s\cuts\%s', 0, ''
+__5034a8: db 'art/%s/cuts/%s', 0, ''
  align 4
-__5034b8: db 'art\cuts\%s', 0, ''
+__5034b8: db 'art/cuts/%s', 0, ''
 __5034c4: db '', 0xa, 'gmovie_play() - Error: Unable to open %s', 0xa, '', 0, ''
  align 4
 __5034f0: db 'subtitles', 0, ''
  align 4
 __5034fc: db 'preferences', 0, ''
-__503508: db 'art\cuts\subtitle.pal', 0, ''
+__503508: db 'art/cuts/subtitle.pal', 0, ''
  align 4
 __503520: db 'color.pal', 0, ''
 __50352a: dd 0x3d042108 ; 0.0322581
  align 4
-__503530: db 'text\%s\cuts\%s', 0, ''
+__503530: db 'text/%s/cuts/%s', 0, ''
 __503540: db '.SVE', 0, ''
  align 4
 __503548: db 'rb', 0, ''
@@ -1218,11 +1218,11 @@ __503580: db '', 0xa, 'GRAPHLIB: Error allocating decompression buffer!', 0xa, '
 __5035b3: dd 0x43700000 ; 240
 __5035b7: dd 0x3b008081 ; 0.00196078
  align 4
-__5035bc: db 'sound\sfx\', 0, ''
+__5035bc: db 'sound/sfx/', 0, ''
  align 4
-__5035c8: db 'sound\music\', 0, ''
+__5035c8: db 'sound/music/', 0, ''
  align 4
-__5035d8: db 'sound\speech\', 0, ''
+__5035d8: db 'sound/speech/', 0, ''
  align 4
 __5035e8: db 'Trying to initialize gsound twice.', 0xa, '', 0, ''
 __50360c: db 'initialize', 0, ''
@@ -1422,7 +1422,7 @@ __50407e: dd 0x3f30a3d7 ; 0.69
  align 4
 __504084: db 'Out of memory in gsound_get_music_path.', 0xa, '', 0, ''
  align 4
-__5040b0: db '\', 0, '', 0, '', 0, ''
+__5040b0: db '/', 0, '', 0, '', 0, ''
 __5040b4: db 'config_set_string failed in gsound_music_path.', 0xa, '', 0, ''
 __5040e4: db 'config_get_string failed in gsound_music_path.', 0xa, '', 0, ''
 __504114: db 'WARNING: %d active effects.', 0xa, '', 0, ''
@@ -2120,7 +2120,7 @@ __507c8c: db 'Invalid type given to fillwin3x3', 0, ''
  align 4
 __507cb0: db 'cannot load 3x3 file ', 0x27, '%s', 0x27, '', 0, ''
  align 4
-__507ccc: db '..\int\INTLIB.C', 0, ''
+__507ccc: db '../int/INTLIB.C', 0, ''
 __507cdc: db 'Invalid arg 6 given to format', 0xa, '', 0, ''
  align 4
 __507cfc: db 'Invalid arg 5 given to format', 0xa, '', 0, ''
@@ -2441,7 +2441,7 @@ __50950c: db 'Reference count zero for %s!', 0xa, '', 0, ''
  align 4
 __50952c: db 'String ref went negative, this shouldn', 0x27, 't ever happen', 0xa, '', 0, ''
  align 4
-__509564: db '..\int\INTRPRET.C', 0, ''
+__509564: db '../int/INTRPRET.C', 0, ''
  align 4
 __509578: db 'rb', 0, ''
  align 4
@@ -2634,9 +2634,9 @@ __50a110: db 'Failed set of start_offset!', 0xa, '', 0, ''
 __50a130: db 'Failed play!', 0xa, '', 0, ''
 __50a13e: dd 0x3f30a3d7 ; 0.69
  align 4
-__50a144: db 'SOUND\SPEECH\', 0, ''
+__50a144: db 'SOUND/SPEECH/', 0, ''
  align 4
-__50a154: db '\', 0, '', 0, '', 0, ''
+__50a154: db '/', 0, '', 0, '', 0, ''
 __50a158: db '.', 0, '', 0, '', 0, ''
 __50a15c: db 'rb', 0, ''
  align 4
@@ -2665,7 +2665,7 @@ __50a378: dd 0x00434f56
 __50a37c: dd 0x004d4341
 __50a380: dd 0x00545854
 __50a384: dd 0x0050494c
-__50a388: db '%s%s\%s.%s', 0, ''
+__50a388: db '%s%s/%s.%s', 0, ''
  align 4
 __50a394: db '', 0xa, 'soundAllocate falied in lips_make_speech!', 0, ''
  align 4
@@ -2683,11 +2683,11 @@ __50a434: db 'system', 0, ''
 __50a43c: db '', 0xa, 'LOADSAVE: Error reading patches config variable! Using default.', 0xa, '', 0, ''
  align 4
 __50a480: db 'SAV', 0, ''
-__50a484: db 'MAPS\', 0, ''
+__50a484: db 'MAPS/', 0, ''
  align 4
 __50a48c: db 'PRO', 0, ''
-__50a490: db 'PROTO\CRITTERS\', 0, ''
-__50a4a0: db 'PROTO\ITEMS\', 0, ''
+__50a490: db 'PROTO/CRITTERS/', 0, ''
+__50a4a0: db 'PROTO/ITEMS/', 0, ''
  align 4
 __50a4b0: db '', 0xa, 'LOADSAVE: Error reading patches config variable! Using default.', 0xa, '', 0, ''
  align 4
@@ -2695,7 +2695,7 @@ __50a4f4: db 'SLOT', 0, ''
  align 4
 __50a4fc: db 'SAVEGAME', 0, ''
  align 4
-__50a508: db '%s\%s%.2d\', 0, ''
+__50a508: db '%s/%s%.2d/', 0, ''
  align 4
 __50a514: db 'SAVE.DAT', 0, ''
  align 4
@@ -2709,7 +2709,7 @@ __50a538: db 'iisxxxx1', 0, ''
  align 4
 __50a544: db '', 0xa, 'LOADSAVE: ** Error loading save game screen data! **', 0xa, '', 0, ''
  align 4
-__50a57c: db '"%s\"', 0, ''
+__50a57c: db '"%s/"', 0, ''
  align 4
 __50a584: db 'ib1p1xx1', 0, ''
  align 4
@@ -2721,15 +2721,15 @@ __50a5cc: db '', 0xa, 'LOADSAVE: Error reading patches config variable! Using de
 __50a610: db '', 0xa, 'LOADSAVE: ** Error loading save game screen data! **', 0xa, '', 0, ''
 __50a647: dd 0xcccccccd, 0x402ccccc ; 14.4
  align 4
-__50a650: db '%s\%s', 0, ''
+__50a650: db '%s/%s', 0, ''
  align 4
-__50a658: db '%s\%s\%s%.2d', 0, ''
+__50a658: db '%s/%s/%s%.2d', 0, ''
  align 4
-__50a668: db '\proto', 0, ''
+__50a668: db '/proto', 0, ''
  align 4
-__50a670: db '\critters', 0, ''
+__50a670: db '/critters', 0, ''
  align 4
-__50a67c: db '\items', 0, ''
+__50a67c: db '/items', 0, ''
  align 4
 __50a684: db '', 0xa, 'LOADSAVE: Warning, can', 0x27, 't backup save file!', 0xa, '', 0, ''
  align 4
@@ -2765,7 +2765,7 @@ __50a9a8: db 'LOADSAVE: Load function #%d data size read: %d bytes.', 0xa, '', 0
 __50a9e0: db 'LOADSAVE: Total load data read: %ld bytes.', 0xa, '', 0, ''
 __50aa0c: db 'MAPS', 0, ''
  align 4
-__50aa14: db '%s\', 0, ''
+__50aa14: db '%s/', 0, ''
 __50aa18: db '', 0xa, 'Error: Couldn', 0x27, 't find LoadSave Message!', 0, ''
 __50aa40: db 'FALLOUT SAVE FILE', 0, ''
  align 4
@@ -2774,7 +2774,7 @@ __50aa58: db '', 0xa, 'LOADSAVE: ** Invalid save file on load! **', 0xa, '', 0, 
  align 4
 __50aa88: db '', 0xa, 'LOADSAVE: Load slot #%d Version: %d.%d%c', 0xa, '', 0, ''
  align 4
-__50aab4: db '%s\%s%.2d\%s', 0, ''
+__50aab4: db '%s/%s%.2d/%s', 0, ''
  align 4
 __50aac4: db '', 0xa, 'LOADSAVE: ** Error opening save game for reading! **', 0xa, '', 0, ''
  align 4
@@ -2800,19 +2800,19 @@ __50abe4: db '', 0xa, 'LOADSAVE: ** (B) Error reading thumbnail #%d! **', 0xa, '
 __50ac18: db '', 0xa, 'LOADSAVE: ** (C) Error reading thumbnail #%d! **', 0xa, '', 0, ''
  align 4
 __50ac4c: db '_', 0, '', 0, '', 0, ''
-__50ac50: db 'PROTO\CRITTERS', 0, ''
+__50ac50: db 'PROTO/CRITTERS', 0, ''
  align 4
-__50ac60: db 'PROTO\ITEMS', 0, ''
-__50ac6c: db '%s\%s\%s', 0, ''
+__50ac60: db 'PROTO/ITEMS', 0, ''
+__50ac6c: db '%s/%s/%s', 0, ''
  align 4
-__50ac78: db '%s\%s\%s%.2d\%s\%s', 0, ''
+__50ac78: db '%s/%s/%s%.2d/%s/%s', 0, ''
  align 4
-__50ac8c: db '%s\*.%s', 0, ''
-__50ac94: db '%s\%s\%s%.2d\', 0, ''
+__50ac8c: db '%s/*.%s', 0, ''
+__50ac94: db '%s/%s/%s%.2d/', 0, ''
  align 4
 __50aca4: db 'AUTOMAP.DB', 0, ''
  align 4
-__50acb0: db '%s\%s\%s%.2d\%s', 0, ''
+__50acb0: db '%s/%s/%s%.2d/%s', 0, ''
 __50acc0: db 'LOADSAVE: in SlotMap2Game', 0xa, '', 0, ''
  align 4
 __50acdc: db 'LOADSAVE: returning 1', 0xa, '', 0, ''
@@ -2836,7 +2836,7 @@ __50ad9c: db 'LOADSAVE: returning 9', 0xa, '', 0, ''
 __50adb4: db 'LOADSAVE: returning 13', 0xa, '', 0, ''
 __50adcc: db '%s*.%s', 0, ''
  align 4
-__50add4: db '%s\%s%s', 0, ''
+__50add4: db '%s/%s%s', 0, ''
 __50addc: db '', 0xa, 'LOADSAVE: Backing up save slot files..', 0xa, '', 0, ''
  align 4
 __50ae08: db '', 0xa, 'LOADSAVE: %d map files backed up.', 0xa, '', 0, ''
@@ -2859,18 +2859,18 @@ __50aefc: db 'quotes.txt', 0, ''
  align 4
 __50af08: db 'FALLOUT II', 0, ''
  align 4
-__50af14: db 'maps\*.map', 0, ''
+__50af14: db 'maps/*.map', 0, ''
  align 4
 __50af20: db 'Select Map', 0, ''
  align 4
 __50af2c: db 'Enter name for recording (8 characters max, no extension):', 0, ''
  align 4
-__50af68: db 'premade\combat.gcd', 0, ''
+__50af68: db 'premade/combat.gcd', 0, ''
  align 4
 __50af7c: db 'subtitles', 0, ''
  align 4
 __50af88: db '', 0xa, '((ShowDeath)): %s', 0xa, '', 0, ''
-__50af9c: db 'art\intrface\death.pal', 0, ''
+__50af9c: db 'art/intrface/death.pal', 0, ''
  align 4
 __50afb4: db 'language', 0, ''
  align 4
@@ -2881,7 +2881,7 @@ __50afc8: db 'MAIN: Error grabing language for ending. Defaulting to english.', 
 __50b00c: db 'english', 0, ''
 __50b014: db '.TXT', 0, ''
  align 4
-__50b01c: db 'text\%s\cuts\%s%s', 0, ''
+__50b01c: db 'text/%s/cuts/%s%s', 0, ''
  align 4
 __50b030: db 'rt', 0, ''
  align 4
@@ -2941,7 +2941,7 @@ __50b2f0: db '', 0xa, 'Error: Ran out of memory!', 0, ''
  align 4
 __50b30c: db 'ERROR! F2', 0, ''
  align 4
-__50b318: db 'maps\%s', 0, ''
+__50b318: db 'maps/%s', 0, ''
 __50b320: db '*.map', 0, ''
  align 4
 __50b328: db 'Select a map to load:', 0, ''
@@ -2993,7 +2993,7 @@ __50b540: db '', 0xa, 'Error: Critter aging failed on map load!', 0, ''
 __50b56c: db '', 0xa, 'Destroying RANDOM encounter map.', 0, ''
  align 4
 __50b590: db 'SAV', 0, ''
-__50b594: db 'MAPS\', 0, ''
+__50b594: db 'MAPS/', 0, ''
  align 4
 __50b59c: db '', 0xa, 'Error: Out of Memory!', 0, ''
  align 4
@@ -3005,7 +3005,7 @@ __50b61c: db 'Save file (no extension):', 0, ''
  align 4
 __50b638: db 'master_patches', 0, ''
  align 4
-__50b648: db '\MAPS', 0, ''
+__50b648: db '/MAPS', 0, ''
  align 4
 __50b650: db '', 0xa, 'Error: map_save: map header corrupt!', 0, ''
  align 4
@@ -3040,7 +3040,7 @@ __50b79c: db 'Error', 0, ''
  align 4
 __50b7a4: db 'rt', 0, ''
  align 4
-__50b7a8: db 'data\badwords.txt', 0, ''
+__50b7a8: db 'data/badwords.txt', 0, ''
  align 4
 __50b7bc: db 'language', 0, ''
  align 4
@@ -3048,7 +3048,7 @@ __50b7c8: db 'system', 0, ''
  align 4
 __50b7d0: db 'text', 0, ''
  align 4
-__50b7d8: db '%s\%s\%s', 0, ''
+__50b7d8: db '%s/%s/%s', 0, ''
  align 4
 __50b7e4: db 'wt', 0, ''
  align 4
@@ -3070,7 +3070,7 @@ __50b960: db '!@#$%&*@#*!&$%#&%#*%!$&%@*$@&', 0, ''
  align 4
 __50b980: db 'language_filter', 0, ''
 __50b990: db 'preferences', 0, ''
-__50b99c: db '..\int\MOUSEMGR.C', 0, ''
+__50b99c: db '../int/MOUSEMGR.C', 0, ''
  align 4
 __50b9b0: db 'Mouse cache overflow!!!!', 0xa, '', 0, ''
  align 4
@@ -3094,7 +3094,7 @@ __50ba74: db 'Can', 0x27, 't find %s', 0xa, '', 0, ''
 __50ba84: db 'Hm, current mouse type is M_STATIC, but no current mouse pointer', 0xa, '', 0, ''
  align 4
 __50bac8: db 'Hm, current mouse type is M_ANIMATED, but no current mouse pointer', 0xa, '', 0, ''
-__50bb0c: db '..\int\MOVIE.C', 0, ''
+__50bb0c: db '../int/MOVIE.C', 0, ''
  align 4
 __50bb1c: db 'Frames %d, dropped %d', 0xa, '', 0, ''
  align 4
@@ -3147,7 +3147,7 @@ __50bcac: db 'fade_steps', 0, ''
  align 4
 __50bcb8: db 'nevs_alloc(): nevs_initonce() not called!', 0, ''
  align 4
-__50bce4: db '..\int\NEVS.C', 0, ''
+__50bce4: db '../int/NEVS.C', 0, ''
  align 4
 __50bcf4: db 'nevs_initonce(): out of memory', 0, ''
  align 4
@@ -3204,7 +3204,7 @@ __50c044: db 'ib2lu1x1', 0, ''
  align 4
 __50c050: db 'butin1', 0, ''
  align 4
-__50c058: db 'narrator\options', 0, ''
+__50c058: db 'narrator/options', 0, ''
  align 4
 __50c06c: db 'ib1lu1x1', 0, ''
 __50c075: dd 0x0, 0x40180000 ; 6
@@ -3291,7 +3291,7 @@ __50c373: dd 0x0, 0x40000000 ; 2
 __50c37c: db '', 0xa, 'Fade time is %u', 0xa, 'Fade steps are %d', 0xa, '', 0, ''
 __50c3a0: dd 0xe434a9b1, 0x3f5767dc ; 0.00142857
 __50c3a8: dd 0x0, 0x404e0000 ; 60
-__50c3b0: db 'data\party.txt', 0, ''
+__50c3b0: db 'data/party.txt', 0, ''
  align 4
 __50c3c0: db 'Party Member %d', 0, ''
 __50c3d0: db 'party_member_pid', 0, ''
@@ -3375,7 +3375,7 @@ __50ca98: db '', 0xa, 'pm: levelMod: %d, Lvl: %d, Early: %d, Every: %d', 0, ''
  align 4
 __50cacc: db 'rb', 0, ''
  align 4
-__50cad0: db '..\int\PCX.C', 0, ''
+__50cad0: db '../int/PCX.C', 0, ''
  align 4
 __50cae0: db 'perk.msg', 0, ''
  align 4
@@ -3448,11 +3448,11 @@ __50ce59: dd 0x5800b0, 0x3f16002c ; 8.39259e-005
 __50ce61: dd 0x453e754c ; 3047.33
 __50ce65: dd 0x33333333, 0x3fc33333 ; 0.15
  align 4
-__50ce70: db 'game\quests.msg', 0, ''
+__50ce70: db 'game/quests.msg', 0, ''
 __50ce80: db 'rt', 0, ''
  align 4
-__50ce84: db 'data\quests.txt', 0, ''
-__50ce94: db 'data\holodisk.txt', 0, ''
+__50ce84: db 'data/quests.txt', 0, ''
+__50ce94: db 'data/holodisk.txt', 0, ''
  align 4
 __50cea8: db '', 0xa, 'Error: Can', 0x27, 't find msg num!', 0, ''
 __50cec4: db '%s%s', 0, ''
@@ -3473,11 +3473,11 @@ __50cf2c: db 'None', 0, ''
  align 4
 __50cf34: db 'Cancel', 0, ''
  align 4
-__50cf3c: db 'proto\', 0, ''
+__50cf3c: db 'proto/', 0, ''
  align 4
 __50cf44: db '%08d', 0, ''
  align 4
-__50cf4c: db '\', 0, '', 0, '', 0, ''
+__50cf4c: db '/', 0, '', 0, '', 0, ''
 __50cf50: db '.lst', 0, ''
  align 4
 __50cf58: db 'a+t', 0, ''
@@ -3506,13 +3506,13 @@ __50d100: db 'master_patches', 0, ''
  align 4
 __50d110: db 'system', 0, ''
  align 4
-__50d118: db '%s\proto', 0, ''
+__50d118: db '%s/proto', 0, ''
  align 4
-__50d124: db '\critters', 0, ''
+__50d124: db '/critters', 0, ''
  align 4
-__50d130: db '\items', 0, ''
+__50d130: db '/items', 0, ''
  align 4
-__50d138: db 'premade\player.gcd', 0, ''
+__50d138: db 'premade/player.gcd', 0, ''
  align 4
 __50d14c: db '', 0xa, 'Error: Initing proto message files!', 0, ''
  align 4
@@ -3540,7 +3540,7 @@ __50d28c: db '^', 0, '', 0, '', 0, ''
 __50d290: db '', 0xa, 'Error: proto_find_art_match: proto_ptr failed!', 0, ''
 __50d2c0: db '', 0xa, 'Error: Found duplicate fid in second prototype!', 0, ''
  align 4
-__50d2f4: db '..\int\REGION.C', 0, ''
+__50d2f4: db '../int/REGION.C', 0, ''
 __50d304: db 'regionAddPoint(): null region ptr', 0xa, '', 0, ''
  align 4
 __50d328: db 'regionDelete(): null region ptr', 0xa, '', 0, ''
@@ -3577,7 +3577,7 @@ __50d4ec: db 's_item', 0, ''
  align 4
 __50d4f4: db 's_critter', 0, ''
  align 4
-__50d500: db 'scripts\', 0, ''
+__50d500: db 'scripts/', 0, ''
  align 4
 __50d50c: db 'no_p_proc', 0, ''
  align 4
@@ -3694,14 +3694,14 @@ __50db50: db '', 0xa, '', 0xa, '', 0x9, '<<< SCRIPT DEBUG DUMP >>>', 0xa, '', 0,
  align 4
 __50db70: db '', 0xa, '', 0x9, '[%s]: %d', 0, ''
  align 4
-__50db7c: db '', 0xa, '[MAP_USAGE]scripts\obj_dude.int   [DEST]scripts\', 0, ''
+__50db7c: db '', 0xa, '[MAP_USAGE]scripts/obj_dude.int   [DEST]scripts/', 0, ''
  align 4
-__50dbb0: db '', 0xa, '[MAP_USAGE]scripts\', 0, ''
+__50dbb0: db '', 0xa, '[MAP_USAGE]scripts/', 0, ''
  align 4
-__50dbc8: db '%s   [DEST]scripts\', 0, ''
-__50dbdc: db 'ERROR \', 0, ''
+__50dbc8: db '%s   [DEST]scripts/', 0, ''
+__50dbdc: db 'ERROR /', 0, ''
 __50dbe4: db '', 0xa, '', 0, '', 0, '', 0, ''
-__50dbe8: db 'dialog\%s.msg', 0, ''
+__50dbe8: db 'dialog/%s.msg', 0, ''
  align 4
 __50dbf8: db '', 0xa, 'Error loading script dialog message file!', 0, ''
  align 4
@@ -3735,9 +3735,9 @@ __50dd80: db '%s.bio', 0, ''
  align 4
 __50dd88: db 'rt', 0, ''
  align 4
-__50dd8c: db 'selfrun\*.sdf', 0, ''
+__50dd8c: db 'selfrun/*.sdf', 0, ''
  align 4
-__50dd9c: db 'selfrun\', 0, ''
+__50dd9c: db 'selfrun/', 0, ''
  align 4
 __50dda8: db '%s%s', 0, ''
  align 4
@@ -3753,7 +3753,7 @@ __50ddcc: db 'master_patches', 0, ''
  align 4
 __50dddc: db 'system', 0, ''
  align 4
-__50dde4: db '%s\%s', 0, ''
+__50dde4: db '%s/%s', 0, ''
  align 4
 __50ddec: db 'wb', 0, ''
  align 4
@@ -3765,7 +3765,7 @@ __50de04: db 0
           db 0
           db 0
           db 0
-__50de08: db '%s\SNDLIST.LST', 0, ''
+__50de08: db '%s/SNDLIST.LST', 0, ''
  align 4
 __50de18: db '%sSNDLIST.LST', 0, ''
  align 4
@@ -3970,7 +3970,7 @@ __50e9e0: db 'See comment in trap.c for suggestions on better', 0, ''
 __50ea10: db 'trap.c', 0, ''
  align 4
 __50ea18: db 'FALLOUT II %d.%02d ', 0, ''
-__50ea2c: db '..\int\WIDGET.C', 0, ''
+__50ea2c: db '../int/WIDGET.C', 0, ''
 __50ea3c: db 'Invalid input type given to win_register_update', 0xa, '', 0, ''
  align 4
 __50ea70: db ' %d ', 0, ''
@@ -4022,11 +4022,11 @@ __50eae8: db 'status bar dimensions not the same', 0xa, '', 0, ''
  align 4
 __50eb1c: dd 0x41f80000 ; 31
 __50eb20: dd 0x41f80000 ; 31
-__50eb24: db '..\int\WINDOW.C', 0, ''
+__50eb24: db '../int/WINDOW.C', 0, ''
 __50eb34: db 'Error initializing video mode %dx%d', 0xa, '', 0, ''
  align 4
 __50eb5c: db 'Not enough memory to initialize video mode', 0xa, '', 0, ''
-__50eb88: db 'Couldn', 0x27, 't find/load text fonts', 0xa, '', 0, ''
+_fontFailText: db 'Couldn', 0x27, 't find/load text fonts', 0xa, '', 0, ''
  align 4
 __50eba8: db 'Attempt to initialize window system twice', 0xa, '', 0, ''
  align 4
@@ -4140,7 +4140,7 @@ __50ee74: db 'worldmap.dat', 0, ''
  align 4
 __50ee84: db 'rb', 0, ''
  align 4
-__50ee88: db 'data\worldmap.txt', 0, ''
+__50ee88: db 'data/worldmap.txt', 0, ''
  align 4
 __50ee9c: db 'data', 0, ''
  align 4
@@ -4239,7 +4239,7 @@ __50f218: db 'player(level)', 0, ''
 __50f228: db 'days_played', 0, ''
 __50f234: db 'time_of_day', 0, ''
 __50f240: db 'enctr(num_critters)', 0, ''
-__50f254: db 'data\city.txt', 0, ''
+__50f254: db 'data/city.txt', 0, ''
  align 4
 __50f264: db 'Area %02d', 0, ''
  align 4
@@ -4264,7 +4264,7 @@ __50f384: db 'entrance_%d', 0, ''
 __50f390: db '', 0xa, 'wmAreaInit::Error loading Cities!', 0, ''
  align 4
 __50f3b4: db '', 0xa, 'WorldMap Error: Couldn', 0x27, 't find match for Map Index!', 0, ''
-__50f3e8: db 'data\maps.txt', 0, ''
+__50f3e8: db 'data/maps.txt', 0, ''
  align 4
 __50f3f8: db 'Map %03d', 0, ''
  align 4
@@ -4315,7 +4315,7 @@ __50f70c: db '', 0xa, 'ERROR: wmSetupCritterObjs: invalid Formation Type!', 0, '
 __50f740: db '', 0xa, 'WARNING: EVAL-TILE-NUM FAILED!', 0, ''
 __50f760: db '', 0xa, 'wmSetupRndNextTileNum:TileNum: %d', 0, ''
  align 4
-__50f784: db 'data\%s.msk', 0, ''
+__50f784: db 'data/%s.msk', 0, ''
 __50f790: db '23world', 0, ''
 __50f798: db '20car', 0, ''
  align 4
@@ -4469,7 +4469,7 @@ __50fc50: db 'filename', 0, ''
  align 4
 __50fc5c: db 'mode', 0, ''
  align 4
-__50fc64: db '%s\%s', 0, ''
+__50fc64: db '%s/%s', 0, ''
  align 4
 __50fc6c: db 'buf', 0, ''
 __50fc70: db 'format', 0, ''
@@ -5246,7 +5246,7 @@ __518628: dd 0xffffffff
           dd __501a08
           dd __501a10
           dd __5019f0
-__51865c: db 'narrator\', 0, ''
+__51865c: db 'narrator/', 0, ''
  align 4
 __518668: dd 0x00000000
 __51866c: dd 0x00000000
@@ -6157,7 +6157,7 @@ __5193c0: dd 0x00000000
 __5193c4: dd 0xffffffff
 __5193c8: dd 0x00000000
 __5193cc: dd 0x00000000
-__5193d0: db '\FALLOUT\CD\DATA\SAVEGAME', 0, ''
+__5193d0: db '/FALLOUT/CD/DATA/SAVEGAME', 0, ''
  align 4
 __5193ec: dd __47f48c
           dd __480734
@@ -9453,11 +9453,12 @@ __51e424: dd 0x0000008b
 __51e428: dd 0x00000000
 __51e42c: dd 0x00000000
 __51e430: dd 0x00000000
-__51e434: dd 0x00000000
+_window:  dd 0x00000000
 __51e438: dd 0x00000000
 __51e43c: dd 0x00000000
 __51e440: dd 0x00000000
-__51e444: dd 0x00000000
+_focus:   dd 0x00000000
+;extern _focus
 __51e448: dd 0x00000000
 __51e44c: dd 0x00000000
 __51e450: dd 0x00000000
