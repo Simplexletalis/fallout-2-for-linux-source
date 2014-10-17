@@ -4,6 +4,8 @@
 #define uint32 unsigned int
 
 #define crash *(int*)0=0
+#define _stdcall __attribute__((stdcall))
+#define _cdecl
 
 #ifdef _WIN32
 #define CCONV1(a) __##a
