@@ -1,4 +1,4 @@
-Team falltergeist has continue development here:
+Team falltergeist has continued development here:
 
 https://github.com/falltergeist/falltergeist
 
