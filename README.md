@@ -1,3 +1,12 @@
+Team falltergeist has continue development here:
+
+https://github.com/falltergeist/falltergeist
+
+
+========================
+
+
+
 fallout-2-for-linux-source
 ========================
 
