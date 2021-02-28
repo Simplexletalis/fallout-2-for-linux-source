@@ -34,42 +34,44 @@ align 4
 
 ;debug_printf
 extern DebugPrintf
-__4c6f48:
-  lea eax, [esp+8]
+__4c6f48:;		debug_printf_
   push edx
   push ecx
+  lea eax, [esp+16]
+  mov edx, [esp+12]
   push eax
-  mov eax, [esp+16]
-  push eax
+  push edx
   call DebugPrintf
   add esp, 8
   pop ecx
   pop edx
   retn
+align 4
 
 ; XXXXXXXXXXXXXXXXXXXXX
 ; XXX Input related XXX
 ; XXXXXXXXXXXXXXXXXXXXX
 
+
 ;int __fastcall dxinput_init()
-__4e0400:
+__4e0400:;		dxinput_init_
 ;void __fastcall dxinput_exit()
-__4e0478:
+__4e0478:;		dxinput_exit_
 ;int __fastcall dxinput_acquire_mouse()
-__4e04e8:
+__4e04e8:;		dxinput_acquire_mouse_
 ;int __fastcall dxinput_unacquire_mouse()
-__4e0514:
+__4e0514:;		dxinput_unacquire_mouse_
 ;int __fastcall dxinput_acquire_keyboard()
-__4e05a8:
+__4e05a8:;		dxinput_acquire_keyboard_
 ;int __fastcall dxinput_unacquire_keyboard()
-__4e05d4:
+__4e05d4:;		dxinput_unacquire_keyboard_
   mov eax, 1
   retn
 align 4
 
 ;int __fastcall dxinput_get_mouse_state(INTERNALMOUSESTATE *mouseState)
 extern MouseState
-__4e053c:
+__4e053c:;		dxinput_get_mouse_state_
   push edx
   push ecx
   push eax
@@ -82,7 +84,7 @@ align 4
 
 ;int __fastcall dxinput_flush_keyboard_buffer()
 extern EmptyKeyQueue
-__4e05fc:
+__4e05fc:;		dxinput_flush_keyboard_buffer_
   push edx
   push ecx
   call EmptyKeyQueue
@@ -94,7 +96,7 @@ align 4
 
 ;int __fastcall dxinput_read_keyboard_buffer(int *key)
 extern GetNextKey
-__4e0650: push ebx
+__4e0650: push ebx;		dxinput_read_keyboard_buffer_
           push ecx
           push edx
           push esi
@@ -147,23 +149,23 @@ __4e0700: add esp, byte 4
           pop edx
           pop ecx
           pop ebx
-          retn 
+          retn
 align 4
 
 ;Don't need these: only called by dxinput_init
 ;int __fastcall dxinput_mouse_init()
-__4e070c:
+__4e070c:;		dxinput_mouse_init_
 ;void __fastcall dxinput_mouse_exit()
-__4e078c:
+__4e078c:;		dxinput_mouse_exit_
 ;int __fastcall dxinput_keyboard_init()
-__4e07b8:
+__4e07b8:;		dxinput_keyboard_init_
 ;void __fastcall dxinput_keyboard_exit()
-__4e0874:
+__4e0874:;		dxinput_keyboard_exit_
   int 3
 align 4
 
 ;Silly thing hooks the keyboard and stops sdl from working
-__4c9c28:
+__4c9c28:;		GNW95_hook_keyboard_
   xor eax, eax
   retn
 align 4
@@ -176,7 +178,7 @@ align 4
 ;Creates the window, sets the screen res and creates the primary surface. We do all that at startup now, so don't bother
 extern showRect
 extern clearScreen
-__4cae1c:
+__4cae1c:;		GNW95_init_mode_ex_
   xor eax, eax
   mov dword [__6ac9f0 + 0], eax
   mov dword [__6ac9f0 + 4], eax
@@ -200,7 +202,7 @@ align 4
 
 ;int __fastcall GNW95_SetPaletteEntries(void *entries, int min, int max)
 extern setPaletteEntries
-__4cb310:
+__4cb310:;		GNW95_SetPaletteEntries_
   push ecx
   push ebx
   push edx
@@ -211,7 +213,7 @@ __4cb310:
   retn
 
 ;int __fastcall GNW95_SetPalette(byte *entries)
-__4cb568:
+__4cb568:;		GNW95_SetPalette_
   push edx
   push ecx
   push dword 256
@@ -239,27 +241,27 @@ __4f4dd0:
 ;The polymorphic function at 4F7349, and the associated switch table
 global _6b4033, _6b4037, _6b401b, _6b4017, _6b401f, _6b4023
 extern _4f7359
-__4f7438:
-__4f7440:
-__4f7444:
-__4f7464:
-__4f7478:
-__4f7488:
-__4f74a4:
-__4f754c:
+__4f7438:;		$$R0006
+__4f7440:;		$$R000A
+__4f7444:;		$$R000D
+__4f7464:;		$$R0019
+__4f7478:;		$$R0028
+__4f7488:;		$$R0034
+__4f74a4:;		$$R003D
+__4f754c:;		$$R002A
   retn
 align 4
 
 ;The polymorphic function at 4f9f28 (unused)
-__4f9f28:
-__4fa014:
-__4fa01c:
-__4fa020:
-__4fa048:
-__4fa060:
-__4fa074:
-__4fa090:
-__4fa178:
+__4f9f28:;		nfHPkDecomp_
+__4fa014:;		$$R001A
+__4fa01c:;		$$R001D
+__4fa020:;		$$R0022
+__4fa048:;		$$R003A
+__4fa060:;		$$R0040
+__4fa074:;		$$R004F
+__4fa090:;		$$R005D
+__4fa178:;		$$R006B
   int 3
   retn
 align 4
@@ -268,8 +270,8 @@ extern FreeSurface
 extern CreateSurface
 
 ;CreateMovieSurfaces [NONE]
-global __4f5cb0
-__4f5cb0: sub esp, byte 108
+global __4f5cb0;		nfConfig_
+__4f5cb0: sub esp, byte 108;		nfConfig_
           cmp dword [__51ee00], byte 0
           push ebx
           push esi
@@ -308,7 +310,7 @@ global __4f5d3a
 __4f5d3a: lea edi, [esp + 12]
           xor eax, eax
           mov ecx, dword 0x1b
-          rep stosd 
+          rep stosd
           mov eax, dword [__6b3cfc]
           mov ecx, dword [__6b402f]
           mov dword [esp + 24], eax
@@ -335,7 +337,7 @@ __4f5dbf: lea eax, [esp + 12]
           mov ecx, dword [__51ede0]
           push eax
           call CreateSurface
-		  add esp, 8
+          add esp, 8
           test eax, eax
           jz __4f5de4
           xor eax, eax
@@ -343,14 +345,14 @@ __4f5dbf: lea eax, [esp + 12]
           pop esi
           pop ebx
           add esp, byte 108
-          retn 
+          retn
 global __4f5de4
 __4f5de4: lea eax, [esp + 12]
           push dword __51ee04
           mov ecx, dword [__51ede0]
           push eax
           call CreateSurface
-		  add esp, 8
+          add esp, 8
           test eax, eax
           jz __4f5e09
           xor eax, eax
@@ -358,7 +360,7 @@ __4f5de4: lea eax, [esp + 12]
           pop esi
           pop ebx
           add esp, byte 108
-          retn 
+          retn
 global __4f5e09
 __4f5e09: mov eax, dword [__6b3cfc]
           mov dword [__6b4027], esi
@@ -376,13 +378,13 @@ __4f5e31: mov ecx, dword [__6b3cfc]
           mov dword [__6b3d00], eax
           sub eax, ecx
           mov dword [__6b3cec], eax
-          call __4f731d
+          call __4f731d;		nfPkConfig_
           mov eax, dword 0x1
           pop edi
           pop esi
           pop ebx
           add esp, byte 108
-          retn 
+          retn
 align 4
 
 ;LockMovieSurface
@@ -416,7 +418,7 @@ __4f5ef0:
 align 4
 
 ;ReleaseMovieSurfaces
-__4f6390:
+__4f6390:;		nfRelease_
   push edx
   push ecx
   push dword [__51ee04]
@@ -433,8 +435,8 @@ align 4
 
 ;_movie_MVE_ShowFrame [NONE]
 extern bltToScreen
-global __486654
-__486654: push ebx
+global __486654;		movie_MVE_ShowFrame_
+__486654: push ebx;		movie_MVE_ShowFrame_
           push esi
           push edi
           push ebp
@@ -445,7 +447,7 @@ __486654: push ebx
           mov ebx, dword 0x6c
           mov eax, esp
           xor edx, edx
-          call __4f0080
+          call __4f0080;		memset_
           mov eax, dword [esp + 0xb4]
           mov edx, dword 0x6c
           mov dword [esp + 108], eax
@@ -557,21 +559,21 @@ __4868c0: lea edx, [esp + 116 - 8]
           lea edx, [esp + 0x8c - 8]
           push edx
           call bltToScreen
-		  xor eax, eax
-		  add esp, 12
+          xor eax, eax
+          add esp, 12
 global __4868f3
 __4868f3: add esp, dword 0x94
           pop ebp
           pop edi
           pop esi
           pop ebx
-          retn 
+          retn
 align 4
 
 ;_cleanupMovie [NONE]
 extern LockSingleSurface, UnlockSingleSurface
-global __486e98
-__486e98: push ebx
+global __486e98;		cleanupMovie_
+__486e98: push ebx;		cleanupMovie_
           push ecx
           push edx
           push esi
@@ -586,21 +588,21 @@ __486edd: lea eax, [esp + 108]
           push eax
           lea eax, [esp + 116]
           push eax
-          call __4f4bd0
+          call __4f4bd0;		MVE_rmFrameCounts_
           add esp, byte 8
           mov edi, dword [esp + 108]
           push edi
           mov ebp, dword [esp + 116]
           push ebp
           push dword __50bb1c
-          call __4c6f48
+          call __4c6f48;		debug_printf_
           mov eax, dword [__638e90]
           add esp, byte 12
           test eax, eax
           jz __486f26
           mov ebx, dword 0x313
           mov edx, dword __50bb0c
-          call __484688
+          call __484688;		myfree_
           xor edx, edx
           mov dword [__638e90], edx
 global __486f26
@@ -622,7 +624,7 @@ __486f26: mov ebx, dword [__638e9c]
           imul eax, dword [__638e4c]
           mov ebx, dword 0x322
           mov edx, dword __50bb0c
-          call __484660
+          call __484660;		mymalloc_
           mov ebp, dword [esp + 16]
           mov edx, dword [__638e54]
           imul edx, ebp
@@ -639,7 +641,7 @@ __486f26: mov ebx, dword [__638e9c]
           push edi
           add edx, ecx
           push edx
-          call __4d36d4
+          call __4d36d4;		buf_to_buf_
           add esp, byte 24
           mov ecx, dword [esp + 36]
           mov eax, dword [__638e9c]
@@ -654,22 +656,22 @@ __486fca: xor edi, edi
 global __486fd2
 __486fd2: test esi, esi
           jz __486fdb
-          call __4f6240
+          call __4f6240;		MVE_rmEndMovie_
 global __486fdb
-__486fdb: call __4f6350
+__486fdb: call __4f6350;		MVE_ReleaseMem_
           mov eax, dword [__638ea8]
-          call __4c5eb4
+          call __4c5eb4;		db_fclose_
           cmp dword [__638eac], byte 0
           jz __487051
           mov eax, dword [__5195b8]
-          call __4d7918
+          call __4d7918;		win_width_
           push eax
           mov eax, dword [__5195b8]
-          call __4d7918
+          call __4d7918;		win_width_
           mov edx, dword [__638eb4]
           imul edx, eax
           mov eax, dword [__5195b8]
-          call __4d78b0
+          call __4d78b0;		win_get_buf_
           add eax, edx
           add eax, dword [__638eb0]
           push eax
@@ -680,17 +682,17 @@ __486fdb: call __4f6350
           push ebx
           mov edi, dword [__638eac]
           push edi
-          call __4d36d4
+          call __4d36d4;		buf_to_buf_
           add esp, byte 24
           mov edx, dword __638e20
           mov eax, dword [__5195b8]
-          call __4d6f80
+          call __4d6f80;		win_draw_rect_
 global __487051
 __487051: mov ebp, dword [__638ebc]
           test ebp, ebp
           jz __487069
           mov eax, ebp
-          call __4c5eb4
+          call __4c5eb4;		db_fclose_
           xor eax, eax
           mov dword [__638ebc], eax
 global __487069
@@ -700,7 +702,7 @@ __487069: mov edx, dword [__638ec0]
           mov ebx, dword 0x348
           mov eax, edx
           mov edx, dword __50bb0c
-          call __484688
+          call __484688;		myfree_
           xor ebx, ebx
           mov dword [__638ec0], ebx
 global __48708c
@@ -711,7 +713,7 @@ __48708c: mov ecx, dword [__638eac]
           mov edx, dword __50bb0c
           mov eax, ecx
           xor esi, esi
-          call __484688
+          call __484688;		myfree_
           mov dword [__638eac], esi
 global __4870af
 __4870af: mov esi, dword __50bb0c
@@ -723,11 +725,11 @@ __4870b4: mov edi, dword [__638e74]
           mov edx, esi
           mov eax, dword [edi]
           mov ecx, dword [edi + 8]
-          call __484688
+          call __484688;		myfree_
           mov ebx, dword 0x354
           mov eax, dword [__638e74]
           mov edx, esi
-          call __484688
+          call __484688;		myfree_
           mov dword [__638e74], ecx
           jmp __4870b4
 global __4870e8
@@ -746,7 +748,7 @@ __487111: add esp, byte 116
           pop edx
           pop ecx
           pop ebx
-          retn 
+          retn
 align 4
 
 ; XXXXXXXXXXXXXXXXXXXXXX
@@ -755,7 +757,7 @@ align 4
 
 ;int (const char* title)
 extern SetWindowTitle
-__4d80d8:
+__4d80d8:;		win_set_minimized_title_
   push edx
   push ecx
   push eax
@@ -769,8 +771,8 @@ align 4
 
 ;_GNW95_process_message [NONE]
 extern RunMessageQueue
-global __4c9cf0
-__4c9cf0: push ebx
+global __4c9cf0;		GNW95_process_message_
+__4c9cf0: push ebx;		GNW95_process_message_
           push ecx
           push edx
           push esi
@@ -778,16 +780,16 @@ __4c9cf0: push ebx
           sub esp, byte 32
           cmp dword [_focus], byte 0
           jz __4c9da7
-          call __4cbe18
+          call __4cbe18;		kb_is_disabled_
           test eax, eax
           jnz __4c9da7
 global __4c9d12
 __4c9d12: lea eax, [esp + 28]
-          call __4e0650
+          call __4e0650;		dxinput_read_keyboard_buffer_
           cmp eax, byte 1
           jnz __4c9d2b
           lea eax, [esp + 28]
-          call __4c9e14
+          call __4c9e14;		GNW95_process_key_
           jmp __4c9d12
 global __4c9d2b
 __4c9d2b: call dword [_6c0200]
@@ -822,7 +824,7 @@ __4c9d70: cmp esi, eax
           mov byte  [esp + 29], byte 1
           lea eax, [esp + 28]
           mov byte  [esp + 28], bl
-          call __4c9e14
+          call __4c9e14;		GNW95_process_key_
           mov ax, word  [edx + __6abf54]
           mov dword [edx + __6abf50], ecx
           inc eax
@@ -840,7 +842,7 @@ __4c9da7: call RunMessageQueue
           pop edx
           pop ecx
           pop ebx
-          retn 
+          retn
 align 4
 
 ; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -850,13 +852,13 @@ align 4
 global _removed_void_func
 _removed_void_func
 ;This is a weird apparent nop in fallout - calls another function, which pops and then returns
-__4e6aa5:
+__4e6aa5:;		getpow10
 ;The function that does the ereg gunk
-__440dd0:
+__440dd0:;		annoy_user_
 ;Win32Shutdown
-__413a00:
+__413a00:;		autorun_mutex_destroy_
 ;GNW95_reset_mode
-__4cb1b0:
+__4cb1b0:;		GNW95_reset_mode_
 ;SetMovieDevice
 __4f4b80:
   retn
@@ -865,29 +867,29 @@ align 4
 global _removed_unused_func
 _removed_unused_func
 ;__CBeginThread_
-__4efee3:
+__4efee3:;		__CBeginThread_
 ;__CEndThread_
-__4effb7:
+__4effb7:;		__CEndThread_
 ;__CInitThread_
-__4efcf7:
+__4efcf7:;		__CInitThread_
 ;__FiniSema4s_
-__4ec833:
+__4ec833:;		__FiniSema4s_
 ;__full_io_exit_
-__4ef136:
+__4ef136:;		__full_io_exit_
 ;__setenvp_
-__4ec312:
+__4ec312:;		__setenvp_
 ;__verify_pentium_fdiv_bug_
-__4eb450:
+__4eb450:;		__verify_pentium_fdiv_bug_
 ;__checkIsDBCS_
-__4ec102:
+__4ec102:;		__mbInitOnStartup_
 ;__InitFiles_
-__4ef0bf:
+__4ef0bf:;		__InitFiles_
 ;__chk8087_
-__4eb09b:
+__4eb09b:;		__chk8087_
 ;__setEFGfmt_
-__4f2168:
+__4f2168:;		__setEFGfmt_
 ;__clock_init_
-__4f2198:
+__4f2198:;		__clock_init
 ;Jump table for 4E4040
 __4e4094:
 __4e415c:
@@ -897,19 +899,19 @@ __4e4163:
 __4e416a:
 __4e417e:
 ;Some other sound pointer thingy
-__4ac768:
+__4ac768:;		soundOpenData_
 ;j_close_
-__4ac77c:
+__4ac77c:;		soundCloseData_
 ;j_read_
-__4ac760:
+__4ac760:;		soundReadData_
 ;j_write_
-__4ac758:
+__4ac758:;		soundWriteData_
 ;j_lseek_
-__4ac774:
+__4ac774:;		soundSeekData_
 ;j_tell_
-__4ac750:
+__4ac750:;		soundTellData_
 ;soundFileSize_
-__4ac71c:
+__4ac71c:;		soundFileSize_
   int 3
   retn
 align 4
@@ -917,7 +919,7 @@ align 4
 global _removed_int_func
 _removed_int_func
 ;Win32Startup - just creates another mutex
-__4139c0:
+__4139c0:;		autorun_mutex_create_
   mov eax, 1
   retn
 align 4
@@ -936,22 +938,22 @@ align 4
 ;assoc functions
 
 %if 0
-extern __4d9ba8 ;assoc_init
-extern __4d9c0c ;assoc_resize
-extern __4d9c48 ;assoc_free
-extern __4d9cc4 ;assoc_find
-extern __4d9d5c ;assoc_search
-extern __4d9d88 ;assoc_insert
-extern __4d9ee8 ;assoc_delete
-;extern __4d9f84 ;assoc_copy
-;extern __4d9fe4 ;assoc_find_first
-extern __4da090 ;assoc_read_long
-extern __4da0f4 ;assoc_read_assoc_array
-;extern __4da158 ;assoc_load
-;extern __4da2ec ;assoc_write_long
-;extern __4da360 ;assoc_write_assoc_array
-;extern __4da3a4 ;assoc_save
-extern __4da498 ;assoc_register_mem
+extern __4d9ba8 ;assoc_init;		assoc_init_
+extern __4d9c0c ;assoc_resize;		assoc_resize_
+extern __4d9c48 ;assoc_free;		assoc_free_
+extern __4d9cc4 ;assoc_find;		assoc_find_
+extern __4d9d5c ;assoc_search;		assoc_search_
+extern __4d9d88 ;assoc_insert;		assoc_insert_
+extern __4d9ee8 ;assoc_delete;		assoc_delete_
+;extern __4d9f84 ;assoc_copy;		assoc_copy_
+;extern __4d9fe4 ;assoc_find_first;		assoc_find_first_
+extern __4da090 ;assoc_read_long;		assoc_read_long_
+extern __4da0f4 ;assoc_read_assoc_array;		assoc_read_assoc_array_
+;extern __4da158 ;assoc_load;		assoc_load_
+;extern __4da2ec ;assoc_write_long;		assoc_write_long_
+;extern __4da360 ;assoc_write_assoc_array;		assoc_write_assoc_array_
+;extern __4da3a4 ;assoc_save;		assoc_save_
+extern __4da498 ;assoc_register_mem;		assoc_register_mem_
 %endif
 
 

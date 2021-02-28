@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "sdl/SDL.h"
+#include <SDL/SDL.h>
 #include <cstring>
 using namespace std;
 
