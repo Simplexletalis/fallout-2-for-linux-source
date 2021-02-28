@@ -1,6 +1,10 @@
 #include "stdafx.h"
-#include "sdl/SDL.h"
+#include <SDL/SDL.h>
 #include <cstdio>
+
+#include <limits.h>
+#include "files.h"
+
 using namespace std;
 
 static int _stdcall FakeGetKeyState(int n) {
@@ -46,16 +50,20 @@ static int _stdcall FakeCloseHandle(int) {
 }
 
 static int _stdcall FakeCopyFile(const char* from, const char* to, int bFailIfExists) {
+	char newfrom[PATH_MAX];
+	char newto[PATH_MAX];
+	changePath(newto, to);
+	changePath(newfrom, from);
 	if(bFailIfExists) {
-		FILE* f=fopen(to, "rb");
+		FILE* f=fopen(newto, "rb");
 		if(f) {
 			fclose(f);
 			return 0;
 		}
 	}
-	FILE* ffrom=fopen(from, "rb");
+	FILE* ffrom=fopen(newfrom, "rb");
 	if(!ffrom) return 0;
-	FILE* fto=fopen(to, "wb");
+	FILE* fto=fopen(newto, "wb");
 	if(!fto) {
 		fclose(ffrom);
 		return 0;
